@@ -9,6 +9,7 @@ describe("Tamagotchi", function(){
       gotchi.activityLevel.should.equal(10);
     });
   });
+
   describe("timePasses", function() {
     it("should decrease the value of food by one", function() {
       var gotchi = Object.create(Tamagotchi);
@@ -31,12 +32,76 @@ describe("Tamagotchi", function(){
       gotchi.activityLevel.should.equal(9);
     });
   });
+
   describe("isAlive", function() {
     it("should return true if food is greater than 0", function() {
       var gotchi = Object.create(Tamagotchi);
       gotchi.initialize("Cher");
       gotchi.timePasses();
       gotchi.isAlive().should.equal(true);
+    });
+
+    it("should return false if food is less than or equal to 0.", function(){
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Sonny");
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.isAlive().should.equal(false);
+    });
+
+    it("should return true if food is greater than 0 and both sleep and activty are greater than 0", function() {
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Cher");
+      gotchi.timePasses();
+      gotchi.isAlive().should.equal(true);
+    });
+
+    it("should return false if food is less than or equal to 0 or both sleep and activity are less than or equal to 0.", function(){
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Sonny");
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.timePasses();
+      gotchi.isAlive().should.equal(false);
+    });
+
+    it("should return true if food and sleep are greater than 0, but acitivty is 0", function(){
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.foodLevel = 8;
+      gotchi.sleepLevel = 8;
+      gotchi.activityLevel = 0;
+      gotchi.isAlive().should.equal(true);
+    });
+
+    it("should return true if food and activity are greater than 0, but sleep is 0", function(){
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.foodLevel = 8;
+      gotchi.sleepLevel = 0;
+      gotchi.activityLevel = 8;
+      gotchi.isAlive().should.equal(true);
+    });
+
+    it("should return false if food is 0, but sleep and activity are greater than 0", function(){
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.foodLevel = 0;
+      gotchi.sleepLevel = 8;
+      gotchi.activityLevel = 8;
+      gotchi.isAlive().should.equal(false);
     });
   });
 });

@@ -11,7 +11,7 @@ var Tamagotchi = {
     this.activityLevel -= 1;
   },
   isAlive: function(){
-    if(this.foodLevel){
+    if(this.foodLevel && (this.sleepLevel || this.activityLevel)) {
       return true;
     } else {
       return false;
