@@ -36,47 +36,33 @@ describe("Tamagotchi", function(){
   describe("isAlive", function() {
     it("should return true if food is greater than 0", function() {
       var gotchi = Object.create(Tamagotchi);
-      gotchi.initialize("Cher");
-      gotchi.timePasses();
+      gotchi.foodLevel = 10;
+      gotchi.sleepLevel = 10;
+      gotchi.activityLevel = -10;
       gotchi.isAlive().should.equal(true);
     });
 
     it("should return false if food is less than or equal to 0.", function(){
       var gotchi = Object.create(Tamagotchi);
-      gotchi.initialize("Sonny");
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
+      gotchi.foodLevel = -10;
+      gotchi.sleepLevel = 10;
+      gotchi.activityLevel = 10;
       gotchi.isAlive().should.equal(false);
     });
 
     it("should return true if food is greater than 0 and both sleep and activty are greater than 0", function() {
       var gotchi = Object.create(Tamagotchi);
-      gotchi.initialize("Cher");
-      gotchi.timePasses();
+      gotchi.foodLevel = 10;
+      gotchi.sleepLevel = 10;
+      gotchi.activityLevel = 10;
       gotchi.isAlive().should.equal(true);
     });
 
-    it("should return false if food is less than or equal to 0 or both sleep and activity are less than or equal to 0.", function(){
+    it("should return false if both sleep and activity are less than or equal to 0.", function(){
       var gotchi = Object.create(Tamagotchi);
-      gotchi.initialize("Sonny");
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
-      gotchi.timePasses();
+      gotchi.sleepLevel = 0;
+      gotchi.activityLevel = 0;
+      gotchi.foodLevel = 10;
       gotchi.isAlive().should.equal(false);
     });
 
@@ -96,13 +82,6 @@ describe("Tamagotchi", function(){
       gotchi.isAlive().should.equal(true);
     });
 
-    it("should return false if food is 0, but sleep and activity are greater than 0", function(){
-      var gotchi = Object.create(Tamagotchi);
-      gotchi.foodLevel = 0;
-      gotchi.sleepLevel = 8;
-      gotchi.activityLevel = 8;
-      gotchi.isAlive().should.equal(false);
-    });
   });
   describe("feeding", function() {
     it("should add 1 food to foodLevel", function() {
