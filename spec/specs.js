@@ -31,4 +31,12 @@ describe("Tamagotchi", function(){
       gotchi.activityLevel.should.equal(9);
     });
   });
+  describe("isAlive", function() {
+    it("should return true if food is greater than 0", function() {
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Cher");
+      gotchi.timePasses();
+      gotchi.isAlive().should.equal(true);
+    });
+  });
 });

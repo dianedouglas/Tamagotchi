@@ -9,5 +9,12 @@ var Tamagotchi = {
     this.foodLevel -= 1;
     this.sleepLevel -= 1;
     this.activityLevel -= 1;
+  },
+  isAlive: function(){
+    if(this.foodLevel){
+      return true;
+    } else {
+      return false;
+    }
   }
 };
