@@ -4,6 +4,9 @@ var Tamagotchi = {
     this.foodLevel = 10;
     this.sleepLevel = 10;
     this.activityLevel = 10;
+    $(".food").text(this.foodLevel);
+    $(".sleep").text(this.sleepLevel);
+    $(".activity").text(this.activityLevel);
   },
   timePasses: function(){
     this.foodLevel -= 1;
@@ -12,11 +15,14 @@ var Tamagotchi = {
     $(".food").text(this.foodLevel);
     $(".sleep").text(this.sleepLevel);
     $(".activity").text(this.activityLevel);
+    this.isAlive();
   },
   isAlive: function(){
     if(this.foodLevel && (this.sleepLevel || this.activityLevel)) {
       return true;
     } else {
+      $(".dead").fadeIn();
+      $(".interactions, .status, .info").hide();
       return false;
     }
   },
@@ -53,5 +59,12 @@ $(document).ready(function(){
   $("#sleeping").click(function(){
     gotchi.sleeping();
     gotchi.timePasses();
+  });
+  $(".restart-button").click(function(){
+    $(".dead").hide();
+    $(".info").show();
+    $("form").show();
+    $(".your-pet").text("your new pet!");
+    $("input#pet-name").val("");
   });
 });
