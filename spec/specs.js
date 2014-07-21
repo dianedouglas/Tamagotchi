@@ -16,5 +16,19 @@ describe("Tamagotchi", function(){
       gotchi.timePasses();
       gotchi.foodLevel.should.equal(9);
     });
+
+    it("should decrease the value of sleep by one", function() {
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Cher");
+      gotchi.timePasses();
+      gotchi.sleepLevel.should.equal(9);
+    });
+
+    it("should decrease the value of activity by one", function() {
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Cher");
+      gotchi.timePasses();
+      gotchi.activityLevel.should.equal(9);
+    });
   });
 });

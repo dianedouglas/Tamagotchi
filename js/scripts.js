@@ -6,6 +6,8 @@ var Tamagotchi = {
     this.activityLevel = 10;
   },
   timePasses: function(){
-    this.foodLevel = this.foodLevel - 1;
+    this.foodLevel -= 1;
+    this.sleepLevel -= 1;
+    this.activityLevel -= 1;
   }
 };
