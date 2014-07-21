@@ -10,3 +10,8 @@
 .dead {
   display: none;
 }
+
+.emergency-text {
+  font-style: italic;
+  color: red;
+}

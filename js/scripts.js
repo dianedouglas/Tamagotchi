@@ -4,18 +4,13 @@ var Tamagotchi = {
     this.foodLevel = 10;
     this.sleepLevel = 10;
     this.activityLevel = 10;
-    $(".food").text(this.foodLevel);
-    $(".sleep").text(this.sleepLevel);
-    $(".activity").text(this.activityLevel);
+    this.displayStatus();
   },
   timePasses: function(){
     this.foodLevel -= 1;
     this.sleepLevel -= 1;
     this.activityLevel -= 1;
-    $(".food").text(this.foodLevel);
-    $(".sleep").text(this.sleepLevel);
-    $(".activity").text(this.activityLevel);
-    this.isAlive();
+    this.displayStatus();
   },
   isAlive: function(){
     if(this.foodLevel && (this.sleepLevel || this.activityLevel)) {
@@ -29,13 +24,40 @@ var Tamagotchi = {
   },
   feeding: function(){
     this.foodLevel += 1;
+    this.displayStatus();
   },
   playing: function() {
     this.activityLevel += 1;
+    this.displayStatus();
   },
   sleeping: function(){
     this.sleepLevel += 1;
+    this.displayStatus();
   },
+  displayStatus: function(){
+    var foodStatus = $(".food");
+    var sleepStatus = $(".sleep");
+    var activityStatus = $(".activity");
+    foodStatus.text(this.foodLevel);
+    sleepStatus.text(this.sleepLevel);
+    activityStatus.text(this.activityLevel);
+    if(this.foodLevel <= 3){
+      foodStatus.addClass('emergency-text');
+    }else{
+      foodStatus.removeClass('emergency-text');
+    }
+    if(this.sleepLevel <= 3){
+      sleepStatus.addClass('emergency-text');
+    }else{
+      sleepStatus.removeClass('emergency-text');
+    }
+    if(this.activityLevel <= 3){
+      activityStatus.addClass('emergency-text');
+    }else{
+      activityStatus.removeClass('emergency-text');
+    }
+    this.isAlive();
+  }
 };
 
 var interval;
@@ -50,19 +72,16 @@ $(document).ready(function(){
     $(".interactions").slideDown();
     $(".status").slideDown();
     $("form").hide();
-    interval = setInterval(function(){ gotchi.timePasses()}, 500);
+    interval = setInterval(function(){ gotchi.timePasses()}, 1000);
   });
   $("#feeding").click(function(){
     gotchi.feeding();
-    gotchi.timePasses();
   });
   $("#playing").click(function(){
     gotchi.playing();
-    gotchi.timePasses();
   });
   $("#sleeping").click(function(){
     gotchi.sleeping();
-    gotchi.timePasses();
   });
   $(".restart-button").click(function(){
     $(".dead").hide();
