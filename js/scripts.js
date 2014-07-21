@@ -23,6 +23,7 @@ var Tamagotchi = {
     } else {
       $(".dead").fadeIn();
       $(".interactions, .status, .info").hide();
+      clearInterval(interval);
       return false;
     }
   },
@@ -37,6 +38,8 @@ var Tamagotchi = {
   },
 };
 
+var interval;
+
 $(document).ready(function(){
   var gotchi;
   $("form").submit(function( event ) {
@@ -47,6 +50,7 @@ $(document).ready(function(){
     $(".interactions").slideDown();
     $(".status").slideDown();
     $("form").hide();
+    interval = setInterval(function(){ gotchi.timePasses()}, 500);
   });
   $("#feeding").click(function(){
     gotchi.feeding();
