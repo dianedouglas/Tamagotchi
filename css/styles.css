@@ -1,0 +1,12 @@
+#pet-name {
+  width: 30%;
+}
+.interactions {
+  display: none;
+}
+.status {
+  display: none;
+}
+.dead {
+  display: none;
+}

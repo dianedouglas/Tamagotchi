@@ -104,4 +104,28 @@ describe("Tamagotchi", function(){
       gotchi.isAlive().should.equal(false);
     });
   });
+  describe("feeding", function() {
+    it("should add 1 food to foodLevel", function() {
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Gabe");
+      gotchi.feeding();
+      gotchi.foodLevel.should.equal(11);
+    });
+  });
+  describe("playing", function() {
+    it("should add 1 to activity level.", function(){
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Blake");
+      gotchi.playing();
+      gotchi.activityLevel.should.equal(11);
+    });
+  });
+  describe("sleeping", function() {
+    it("should add 1 to sleep level.", function(){
+      var gotchi = Object.create(Tamagotchi);
+      gotchi.initialize("Athena");
+      gotchi.sleeping();
+      gotchi.sleepLevel.should.equal(11);
+    });
+  });
 });

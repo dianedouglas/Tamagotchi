@@ -1,9 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+  <script type="text/javascript" src="js/scripts.js"></script>
+  <title>Gotchi!!</title>
 </head>
 <body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Say Hello to <span class="your-pet">your new pet!</span></h1>
+        <form>
+          <div class="form-group">
+            <label for="pet-name">Enter a name for your Gotchi: </label>
+            <input type="text" class="form-control" id="pet-name" placeholder="Pet Name">
+          </div>
+          <button class="btn btn-info btn-lg" type="submit">Go!</button>
+        </form>
+      </div>
+    </div>
+    <br>
+    <div class="row interactions">
+      <div class="col-md-4">
+        <button id="feeding" class="btn btn-lg btn-success" type="button">FEED ME</button>
+      </div>
+      <div id="playing" class="col-md-4">
+        <button class="btn btn-lg btn-success" type="button">PLAY WITH ME</button>
+      </div>
+      <div id="sleeping" class="col-md-4">
+        <button class="btn btn-lg btn-success" type="button">SLEEP WITH ME</button>
+      </div>
+    </div>
 
+    <div class="row status">
+      <div class="col-md-12">
+          <h4 id="name"></h4>
+          <div class="row">
+            <div class="col-md-4">
+              <p>Food Level: <span class="food"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p>Sleep Level: <span class="sleep"></span></p>
+            </div>
+            <div class="col-md-4">
+              <p>Activity Level: <span class="activity"></span></p>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="row dead">
+      <div class="col-md-12 gotchi-dead">
+        <h4>Oh my god! It's dead! Oh noooo!</h4>
+        <button class="btn btn-lg btn-danger restart-button" type="button">Play again?</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

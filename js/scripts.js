@@ -9,6 +9,9 @@ var Tamagotchi = {
     this.foodLevel -= 1;
     this.sleepLevel -= 1;
     this.activityLevel -= 1;
+    $(".food").text(this.foodLevel);
+    $(".sleep").text(this.sleepLevel);
+    $(".activity").text(this.activityLevel);
   },
   isAlive: function(){
     if(this.foodLevel && (this.sleepLevel || this.activityLevel)) {
@@ -16,5 +19,39 @@ var Tamagotchi = {
     } else {
       return false;
     }
-  }
+  },
+  feeding: function(){
+    this.foodLevel += 1;
+  },
+  playing: function() {
+    this.activityLevel += 1;
+  },
+  sleeping: function(){
+    this.sleepLevel += 1;
+  },
 };
+
+$(document).ready(function(){
+  var gotchi;
+  $("form").submit(function( event ) {
+    event.preventDefault();
+    gotchi = Object.create(Tamagotchi);
+    gotchi.initialize($("input#pet-name").val());
+    $(".your-pet").text($("input#pet-name").val() + "!");
+    $(".interactions").slideDown();
+    $(".status").slideDown();
+    $("form").hide();
+  });
+  $("#feeding").click(function(){
+    gotchi.feeding();
+    gotchi.timePasses();
+  });
+  $("#playing").click(function(){
+    gotchi.playing();
+    gotchi.timePasses();
+  });
+  $("#sleeping").click(function(){
+    gotchi.sleeping();
+    gotchi.timePasses();
+  });
+});
